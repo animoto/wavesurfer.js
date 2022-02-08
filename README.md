@@ -1,4 +1,4 @@
-# Animoto fork of...
+# Animoto fork of..
 # [wavesurfer.js](https://wavesurfer-js.org)
 
 ---
