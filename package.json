@@ -35,7 +35,6 @@
     "prepare": "npm run build",
     "release": "standard-version -m 'chore(release): %s [bump version] :rocket:' --commit-all",
     "postrelease": "./postrelease.sh"
-    
   },
   "repository": {
     "type": "git",
