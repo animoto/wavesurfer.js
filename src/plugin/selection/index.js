@@ -418,7 +418,7 @@ export default class SelectionPlugin {
         if (!this.region) {return [];}
         const minGap = this.region.minLength;
         // sorted list of zones
-        let usedZones = Object.values(zones).sort((a, b) => (a.start - b.start) );
+        let usedZones = Object.values(zones).filter((v) => (v)).sort((a, b) => (a.start - b.start) );
         // add contructed 'end' zone
         usedZones.push({start: this.boundary.duration});
 
@@ -527,7 +527,8 @@ export default class SelectionPlugin {
 
         const {
             selectionStart,
-            start
+            start,
+            end
         } = params;
 
         // Take formatTimeCallback from plugin params if not already set
@@ -544,6 +545,10 @@ export default class SelectionPlugin {
             selectionStart,
             audioStart : start
         });
+        this._updateSelectionZones({
+            self: this.getVisualRange({ start, end })
+        });
+
         const selection = new this.wavesurfer.Selection(params, this.util, this.wavesurfer);
 
         selection.elementRef = selection.element.parentElement.lastChild;
