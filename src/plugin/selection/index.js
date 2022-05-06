@@ -151,6 +151,10 @@ export default class SelectionPlugin {
                 updateBoundary(args) {
                     this.selection._updateBoundary(args);
                 },
+                // get wavesurfer current time, relative to the boundary
+                getBoundaryTime() {
+                    return this.selection._getBoundaryTime();
+                },
 
                 /*
                 selectionZones is an object representing THIS audio region and any other regions that are
@@ -364,6 +368,15 @@ export default class SelectionPlugin {
                 end
             });
         }
+    }
+
+    _getBoundaryTime() {
+        const { selectionStart, audioStart} = this._getSelectionData();
+        const audioTime = this.wavesurfer.getCurrentTime();
+        if (selectionStart === undefined || audioStart === undefined) {
+            return audioTime;
+        }
+        return audioTime - audioStart + selectionStart;
     }
 
     getVisualRange({start, end}) {
