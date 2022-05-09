@@ -187,6 +187,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
             container.append(zoneDiv);
         });
-        wavesurfer.updateSelectionZones(zones);
+        wavesurfer.updateSelectionZones(zones, true);
+    });
+
+    document.querySelector(
+        '[data-action="zones2"]'
+    ).addEventListener('click', function() {
+        const id = Object.keys(zones).pop();
+        const el = document.getElementById(id);
+        if (el) {
+            el.remove();
+            delete zones[id];
+        }
+        wavesurfer.updateSelectionZones(zones, true, true);
     });
 });
