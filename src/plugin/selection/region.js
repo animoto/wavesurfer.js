@@ -700,7 +700,10 @@ export class Region {
                     time = minStart + regionLeftHalfTime;
                 }
 
-                newRange = {start: time - regionLeftHalfTime, end : time + regionRightHalfTime};
+                newRange = {
+                    start: this.wavesurfer.selection.util.msRound(time - regionLeftHalfTime),
+                    end : this.wavesurfer.selection.util.msRound(time + regionRightHalfTime)
+                };
                 const overlapZones = this.wavesurfer.getOverlapZone(newRange.start, newRange.end);
                 setZoneOverlap( overlapZones);
 
@@ -744,7 +747,10 @@ export class Region {
                 }
 
                 // Check if we're resizing into another zone
-                newRange = {...startRange, start: time - regionLeftHalfTime};
+                newRange = {
+                    ...startRange,
+                    start: this.wavesurfer.selection.util.msRound(time - regionLeftHalfTime)
+                };
                 const overlapZones = this.wavesurfer.getOverlapZone(newRange.start, newRange.end);
                 if (overlapZones) {
                     const bumperValue = nextZoneBoundary(overlapZones, startTime, -1); // the overlapzone that we're bumping up against
@@ -770,7 +776,10 @@ export class Region {
                     time = startRange.start + audioDuration - this.start - regionRightHalfTime;
                 }
 
-                newRange = {...startRange, end : time + regionRightHalfTime};
+                newRange = {
+                    ...startRange,
+                    end : this.wavesurfer.selection.util.msRound(time + regionRightHalfTime)
+                };
                 const overlapZones = this.wavesurfer.getOverlapZone(newRange.start, newRange.end);
                 if (overlapZones) {
                     const bumperValue = nextZoneBoundary(overlapZones, startTime, 1); // the overlapzone that we're bumping up against
