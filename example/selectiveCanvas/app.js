@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     wavesurfer.on('ready', () => {
         wavesurfer.addSelection({
-            selectionStart : 11.564,
+            selectionStart : 10,
             start : 5,
             end   : 10,
             color : 'rgba(0, 28, 142, 1)',
@@ -160,7 +160,7 @@ document.addEventListener('DOMContentLoaded', function() {
         let region = wavesurfer.selection.region;
 
         wavesurfer.updateSelectionData({
-            selectionStart : 0,
+            selectionStart : 11.564,
             audioStart : 0,
             audioEnd : 6
         });

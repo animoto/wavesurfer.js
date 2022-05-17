@@ -341,7 +341,7 @@ export default class SelectionPlugin {
 
         return {
             boundaryDuration : duration,
-            selectionStart : start - offset,
+            selectionStart : this.util.msRound(start - offset),
             audioStart : start,
             audioEnd : end
         };
@@ -383,8 +383,8 @@ export default class SelectionPlugin {
 
     getVisualRange({start, end}) {
         return {
-            start: start - this.boundary.offset,
-            end: end - this.boundary.offset
+            start: this.util.msRound(start - this.boundary.offset),
+            end: this.util.msRound(end - this.boundary.offset)
         };
     }
 
