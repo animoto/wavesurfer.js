@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     wavesurfer.on('ready', () => {
         wavesurfer.addSelection({
-            selectionStart : 10,
+            selectionStart : 11.564,
             start : 5,
             end   : 10,
             color : 'rgba(0, 28, 142, 1)',
