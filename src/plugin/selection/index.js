@@ -526,8 +526,8 @@ export default class SelectionPlugin {
                 (zones[id].start < start && zones[id].end >= start) ||
                 // selection overlaps the left side of a zone
                 (zones[id].start <= end && zones[id].end > end) ||
-                // zone is entirely within selection
-                (zones[id].start >= start && zones[id].end <= end) ||
+                // zone is entirely within selection (not start or end zone)
+                (!['startZone', 'endZone'].includes(id) && zones[id].start >= start && zones[id].end <= end) ||
                 // zone exactly equals the selection
                 (zones[id].start === start && zones[id].end === end)
             ) {

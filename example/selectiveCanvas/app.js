@@ -160,7 +160,7 @@ document.addEventListener('DOMContentLoaded', function() {
         let region = wavesurfer.selection.region;
 
         wavesurfer.updateSelectionData({
-            selectionStart : 10,
+            selectionStart : 0,
             audioStart : 0,
             audioEnd : 6
         });
