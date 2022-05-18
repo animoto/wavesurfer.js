@@ -254,6 +254,9 @@ export default class SelectionPlugin {
         this.maxSelections = 1;
         this.selectionsMinLength = params.selectionsMinLength || null;
 
+        this.wavesurfer.params.hideBarEnds = params.hideBarEnds || 1;
+        this.regionGap = params.regionGap || 0;
+
         this.boundary = {
             offset : this.params.boundaryOffset || 0,
             duration : this.params.boundaryDuration
