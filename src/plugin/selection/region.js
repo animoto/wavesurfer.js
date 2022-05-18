@@ -617,8 +617,6 @@ export class Region {
             let updateZones = {...zoneOverlap};
 
             Object.entries(zones).forEach(([id, zone]) => {
-                if (['startZone', 'endZone'].includes(id)) { return;}
-
                 if (!updateZones[id]) {
                     updateZones[id] = {...zone};
                     updateFlag = true;
