@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
             zoneId : "ws1",
             dragThruZones : false,
             hideBarEnds: 2,
-            regionGap: 4
+            regionGap: 2
         })],
         renderer      : SelectionPlugin.SelectiveCanvas
     });
