@@ -650,9 +650,6 @@ export class Region {
                 comparison = (a, b) => (a > b);
             }
             let workingArray = Object.values(zones).map((zone) => zone[boundaryKey]);
-            if (workingArray.length == 1) {
-                return workingArray[0];
-            }
 
             workingArray.sort(sorter);
             for (let i = 0; i < workingArray.length; i += 1) {
@@ -660,7 +657,7 @@ export class Region {
                     return workingArray[i];
                 }
             }
-
+            return null;
         };
         const onMove = (event) => {
             const duration = this.wavesurfer.getBoundary().duration;
@@ -712,9 +709,9 @@ export class Region {
                         const bumperValue = nextZoneBoundary({...zoneOverlap, ...overlapZones}, startTime, time - startTime); // the overlapzone that we're bumping up against
                         // we're dragging right
                         if (time > startTime) {
-                            time = bumperValue - regionRightHalfTime - buffer;
+                            time = bumperValue !== null ? bumperValue - regionRightHalfTime - buffer : time;
                         } else {
-                            time = bumperValue + regionLeftHalfTime + buffer;
+                            time = bumperValue !== null ? bumperValue + regionLeftHalfTime + buffer : time;
                         }
                     }
                 }
