@@ -254,6 +254,7 @@ export default class SelectionPlugin {
             }
         };
         this.maxSelections = 1;
+
         this.selectionsMinLength = params.selectionsMinLength || null;
 
         this.wavesurfer.params.hideBarEnds = params.hideBarEnds || 1;

@@ -46,6 +46,22 @@ export class Region {
         };
         this.regionStyle = params.regionStyle || {};
         this.decoratorStyle = params.decoratorStyle;
+        this.overrideStyle = {
+            subMinimum : {
+                decoratorStyle : {
+                    'border-color' : 'transparent'
+                },
+                handleStyle : {
+                    left : {
+                        display : 'none'
+                    },
+                    right : {
+                        display : 'none'
+                    }
+                }
+            }
+        };
+        this.overrideStyleState = null;
         this.handleLeftEl = null;
         this.handleRightEl = null;
         this.decoratorEl = null;
@@ -54,8 +70,20 @@ export class Region {
         this.showTooltip = params.showTooltip ?? true;
 
         this.maxLength = params.maxLength;
-        // It assumes the minLength parameter value, or the regionsMinLength parameter value, if the first one not provided
+
+        // It assumes the minLength parameter value, or the selectionsMinLength parameter value, if the first one not provided
         this.minLength = params.minLength;
+        // minDisplayLength is an second optional minimum length which only affects rendering
+        this.minDisplayLength = params.minDisplayLength;
+
+        // if we're not given either of these values, default to the other
+        if (!this.minLength) {
+            this.minLength = this.this.minDisplayLength;
+        }
+        if (!this.minDisplayLength) {
+            this.minDisplayLength = this.this.minLength;
+        }
+
         this._onRedraw = () => this.updateRender();
 
         this.scroll = params.scroll !== false && ws.params.scrollParent;
@@ -354,13 +382,19 @@ export class Region {
             startLimited = boundaryDuration - (endLimited - startLimited);
         }
 
-        if (this.minLength != null) {
-            endLimited = Math.max(startLimited + this.minLength, endLimited);
+        if (this.minDisplayLength != null) {
+            endLimited = Math.max(startLimited + this.minDisplayLength, endLimited);
+            if (endLimited - startLimited < this.minLength) {
+                this.attributes['small-bar'] = true;
+            } else {
+                delete this.attributes['small-bar'];
+            }
         }
 
         if (this.maxLength != null) {
             endLimited = Math.min(startLimited + this.maxLength, endLimited);
         }
+
 
         if (this.element != null) {
             // Calculate the left and width values of the region such that
