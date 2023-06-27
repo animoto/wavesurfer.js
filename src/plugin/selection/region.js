@@ -805,7 +805,7 @@ export class Region {
         };
 
         this.element.addEventListener('mousedown', onDown);
-        this.element.addEventListener('touchstart', onDown);
+        this.element.addEventListener('touchstart', onDown, {passive: true});
 
         document.body.addEventListener('mousemove', onMove);
         document.body.addEventListener('touchmove', onMove, {passive: false});
