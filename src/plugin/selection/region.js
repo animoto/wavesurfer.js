@@ -46,22 +46,6 @@ export class Region {
         };
         this.regionStyle = params.regionStyle || {};
         this.decoratorStyle = params.decoratorStyle;
-        this.overrideStyle = {
-            subMinimum : {
-                decoratorStyle : {
-                    'border-color' : 'transparent'
-                },
-                handleStyle : {
-                    left : {
-                        display : 'none'
-                    },
-                    right : {
-                        display : 'none'
-                    }
-                }
-            }
-        };
-        this.overrideStyleState = null;
         this.handleLeftEl = null;
         this.handleRightEl = null;
         this.decoratorEl = null;
@@ -395,7 +379,6 @@ export class Region {
             endLimited = Math.min(startLimited + this.maxLength, endLimited);
         }
 
-
         if (this.element != null) {
             // Calculate the left and width values of the region such that
             // no gaps appear between regions.
@@ -422,7 +405,6 @@ export class Region {
             }
         }
     }
-
     /* Bind audio events. */
     bindInOut() {
         this.firedIn = false;
