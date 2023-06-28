@@ -371,7 +371,7 @@ export class Region {
             if (endLimited - startLimited < this.minLength) {
                 this.attributes['small-bar'] = true;
             } else {
-                delete this.attributes['small-bar'];
+                this.attributes['small-bar'] = false;
             }
         }
 
@@ -398,6 +398,9 @@ export class Region {
                     'data-region-' + attrname,
                     this.attributes[attrname]
                 );
+                if (this.attributes[attrname] === false) {
+                    this.element.removeAttribute('data-region-' + attrname);
+                }
             }
 
             if (this.showTooltip) {

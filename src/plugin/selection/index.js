@@ -446,7 +446,7 @@ export default class SelectionPlugin {
     // given an object of existing zones, returns an ordered array of available zones
     getFreeZones(zones) {
         if (!this.region) {return [];}
-        const minGap = this.region.minLength;
+        const minGap = this.region.minDisplayLength;
         // sorted list of zones
         let usedZones = Object.values(zones).filter((v) => (v)).sort((a, b) => (a.start - b.start) );
         // add contructed 'end' zone
